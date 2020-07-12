@@ -1,4 +1,4 @@
 # My-Brand-Cherubin
 Personal branding website.
 
-## Software developer @Andela.
+## Software developer @Andela
