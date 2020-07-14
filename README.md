@@ -1,3 +1,3 @@
 # My-Brand-Cherubin
 
-Personal branding site
+Landing page of my branding site
