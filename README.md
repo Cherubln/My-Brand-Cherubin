@@ -1,5 +1,3 @@
 # My-Brand-Cherubin
-Personal branding site
 
- 
- 
+Personal branding site
