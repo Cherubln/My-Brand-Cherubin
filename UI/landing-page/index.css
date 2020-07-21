@@ -1,7 +1,9 @@
 :root {
   width: 100vw;
   height: 100%;
+
   background-color: #040404;
+
   font-family: "Poppins", sans-serif;
   color: #ffffff;
 }
@@ -26,18 +28,25 @@ nav a {
   text-decoration: none;
   color: #fbfbfb;
 }
+.nav-links:hover {
+  color: #ffa500;
+}
 
 main {
-  margin: 25vh 7vw;
+  margin: 20vh 7vw;
+
   margin-bottom: 0vh;
   display: flex;
   justify-content: space-between;
 }
 #main-content {
-  flex-basis: 34vw;
-
+  flex-basis: 36vw;
   margin-left: 4vw;
+  animation-name: quickIn;
+  animation-duration: 4s;
+  animation-timing-function: cubic-bezier(0.805, 0.496, 0.676, 0.367);
 }
+
 .contents-height {
   line-height: 1.2;
 }
@@ -50,18 +59,41 @@ h1 {
 h3 {
   color: #a6a6a6;
   font-weight: lighter;
+  animation-name: quickIn;
+  animation-duration: 6s;
 }
-h4 {
-  color: #a70;
+h4 a {
+  color: #ffa500;
+  text-decoration: none;
   font-weight: lighter;
+  animation-name: quickIn;
+  animation-duration: 8s;
+}
+h4 a:hover {
+  font-weight: 600;
 }
 
-img {
+#arrow {
+  position: relative;
+  top: 4px;
+  font-size: 25px;
+}
+
+#profile {
   width: 23vw;
   margin-bottom: 10vw;
   margin-top: 4vw;
-  border-radius: 15px;
+  border-radius: 10px;
 }
+@keyframes quickIn {
+  0% {
+    color: #000;
+  }
+  10% {
+    color: #040404;
+  }
+}
+
 @media (max-width: 1024px) {
   #navbar {
     display: flex;
@@ -75,10 +107,9 @@ img {
     justify-content: space-between;
   }
 
-  img {
+  #profile {
     margin-top: 4vh;
-    width: 20vw;
-    height: 10vh;
+
     border-radius: 2vh;
   }
 }
@@ -94,8 +125,6 @@ img {
   }
 
   #profile {
-    width: 40vw;
-    height: 20vh;
     border-radius: 10px;
     margin-left: 5vw;
     margin-top: 15vh;
@@ -111,13 +140,16 @@ img {
     height: 80%;
     align-items: space-between;
     width: 60vw;
+    font-size: 13px;
   }
 
   #profile {
     margin-top: 10vh;
-    width: 30vw;
-    height: 15vh;
+
     margin-left: 5vw;
     border-radius: 6px;
+  }
+  #arrow {
+    font-size: 6vw;
   }
 }
