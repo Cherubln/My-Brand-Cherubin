@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Cherubin Ndikubwayo - Developer - I build and develop websites
+      Contact Cherubin Ndikubwayo - Developer - I build and develop websites
     </title>
+    <link
+      rel="shortcut icon"
+      href="../favicon_io/favicon.ico"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="./contact.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
@@ -17,7 +22,7 @@
       <nav id="navbar">
         <div>
           <a href="../landing-page/index.html" class="nav-links">Home</a>
-          <a href="#" class="nav-links">About</a>
+          <a href="../about-page/about.html" class="nav-links">About</a>
           <a href="#" class="nav-links">work</a>
           <a href="#" class="nav-links">Blog</a>
         </div>
@@ -34,23 +39,32 @@
       </p>
       <form action="submit">
         <div class="form-text">
-          <label for="">Name:</label>
-          <input type="text" placeholder="Enter your name" class="input-txt" />
-        </div>
-        <div class="form-text">
-          <label for="">Email Address:</label>
+          <label for="name">Name:</label>
           <input
+            name="name"
             type="text"
-            placeholder="Enter your email address"
+            placeholder="Enter your name"
             class="input-txt"
+            required
           />
         </div>
         <div class="form-text">
-          <label for="">Message:</label>
+          <label for="email">Email Address:</label>
+          <input
+            name="email"
+            type="text"
+            placeholder="Enter your email address"
+            class="input-txt"
+            required
+          />
+        </div>
+        <div class="form-text">
+          <label for="message">Message:</label>
           <textarea
             name="message"
             id="message"
             placeholder="Enter your message"
+            required
           ></textarea>
         </div>
         <input type="submit" value="Send" id="btn" />
