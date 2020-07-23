@@ -82,6 +82,7 @@ h3 a:hover {
 }
 img {
   width: 40vw;
+  height: auto;
   border-radius: 5px;
   box-shadow: 4px 4px 4px 2px #060606;
 }
@@ -124,6 +125,7 @@ img {
   }
   img {
     width: 50vw;
+    height: auto;
   }
 }
 @media (max-width: 768px) {
@@ -154,6 +156,7 @@ img {
   }
   img {
     width: 50vw;
+    height: auto;
   }
 }
 @media (max-width: 480px) {
@@ -190,5 +193,6 @@ img {
   }
   img {
     width: 80vw;
+    height: auto;
   }
 }
