@@ -38,6 +38,14 @@ h1 {
   animation-duration: 4s;
   animation-timing-function: cubic-bezier(0.605, 0.896, 0.676, 1);
 }
+@keyframes quickIn {
+  0% {
+    color: #000;
+  }
+  8% {
+    color: #040404;
+  }
+}
 h3 {
   margin-left: 11vw;
   margin-top: 10vh;
@@ -85,15 +93,6 @@ img {
   height: auto;
   border-radius: 5px;
   box-shadow: 4px 4px 4px 2px #060606;
-}
-
-@keyframes quickIn {
-  0% {
-    color: #000;
-  }
-  10% {
-    color: #040404;
-  }
 }
 @media (max-width: 1024px) {
   #navbar {
