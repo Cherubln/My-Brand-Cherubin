@@ -30,32 +30,20 @@ nav a {
 .nav-links:hover {
   color: #ffa500;
 }
-#search {
-  display: inline-block;
-  margin-left: 15vw;
+#more {
+  display: none;
 }
-form {
-  display: flex;
-}
-#blog-search {
-  width: 15vw;
-
+#myBtn {
   border: none;
-  font-family: "Poppins", sans-serif;
+  background: transparent;
+  outline: none;
+  color: #ffa500;
 }
-[type="submit"] {
-  background-color: #ffa500;
-  border: none;
-  font-family: "Poppins", sans-serif;
-}
-[type="submit"]:hover {
+i:hover {
   cursor: pointer;
 }
-[type="submit"]:active {
-  background-color: #523708;
-}
-input:focus {
-  outline: none;
+#myBtn:hover {
+  cursor: pointer;
 }
 article {
   width: 60vw;
@@ -64,8 +52,75 @@ article {
 }
 h1 {
   text-transform: uppercase;
-  margin-left: 20vw;
+  margin-left: 10vw;
 }
 p {
   color: #a6a6a6;
+}
+
+@media (max-width: 1024px) {
+  #navbar {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  p {
+    font-size: 20px;
+  }
+  article {
+    width: 70vw;
+    margin: auto;
+    margin-top: 20vh;
+  }
+  #myBtn {
+    font-size: 22px;
+  }
+}
+@media (max-width: 768px) {
+  #navbar {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+  }
+  article {
+    width: 80vw;
+    margin: auto;
+    margin-top: 20vh;
+  }
+  #myBtn {
+    font-size: 18px;
+  }
+}
+@media (max-width: 480px) {
+  #navbar {
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 10px;
+  }
+  article {
+    width: 80vw;
+    margin: auto;
+    margin-top: 20vh;
+  }
+  #myBtn {
+    font-size: 12px;
+  }
 }
