@@ -1,9 +1,14 @@
 :root {
-  width: 100%;
+  width: 60%;
   height: 100%;
   background-color: hsl(0, 0%, 2%);
   font-family: "Poppins", sans-serif;
   color: #ffffff;
+  margin: auto;
+}
+body {
+  margin-top: 20vh;
+  text-align: justify;
 }
 #doc-head {
   position: fixed;
@@ -39,23 +44,39 @@ nav a {
   outline: none;
   color: #ffa500;
 }
-i:hover {
-  cursor: pointer;
+i {
+  margin-right: 10px;
 }
+i,
 #myBtn:hover {
   cursor: pointer;
 }
+
 article {
-  width: 60vw;
-  margin: auto;
-  margin-top: 20vh;
+  margin-top: 5vh;
 }
 h1 {
   text-transform: uppercase;
-  margin-left: 10vw;
 }
 p {
   color: #a6a6a6;
+}
+#comments {
+  background-color: #0e0e0e;
+  border: none;
+  width: 40vw;
+  height: 15vh;
+  color: #fbfbfb;
+  padding-left: 8px;
+  padding-top: 8px;
+  font-family: "Poppins", sans-serif;
+  resize: none;
+}
+#comments:focus {
+  outline: none;
+}
+form {
+  margin-top: 3vh;
 }
 
 @media (max-width: 1024px) {
@@ -71,13 +92,20 @@ p {
   p {
     font-size: 20px;
   }
-  article {
-    width: 70vw;
-    margin: auto;
-    margin-top: 20vh;
+
+  body {
+    margin-top: 10vh;
+    width: 65vw;
   }
   #myBtn {
     font-size: 22px;
+  }
+  form {
+    margin-top: 3vh;
+  }
+  #comments {
+    width: 50vw;
+    height: 10vh;
   }
 }
 @media (max-width: 768px) {
@@ -94,12 +122,21 @@ p {
     font-size: 15px;
   }
   article {
-    width: 80vw;
+    width: 50vw;
     margin: auto;
-    margin-top: 20vh;
+    margin-top: 5vh;
+    margin-left: 4vw;
   }
   #myBtn {
     font-size: 18px;
+  }
+  form,
+  #comments,
+  [type="submit"] {
+    font-size: 10px;
+  }
+  form {
+    margin-left: 3vw;
   }
 }
 @media (max-width: 480px) {
@@ -116,11 +153,20 @@ p {
     font-size: 10px;
   }
   article {
-    width: 80vw;
+    width: 50vw;
     margin: auto;
-    margin-top: 20vh;
+    margin-left: 2vw;
+    margin-top: 3vh;
   }
   #myBtn {
     font-size: 12px;
+  }
+  form,
+  #comments,
+  [type="submit"] {
+    font-size: 10px;
+  }
+  #comments {
+    width: 45vw;
   }
 }
