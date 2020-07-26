@@ -1,0 +1,152 @@
+:root {
+  width: 100vw;
+  height: 100%;
+  background-color: hsl(0, 0%, 2%);
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+}
+#login-box {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  background-color: #0e0e0e;
+  width: 30vw;
+  height: 50vh;
+  border-radius: 10px;
+}
+h1 {
+  margin: 2vh 25%;
+  margin-bottom: 4vh;
+}
+input,
+label {
+  margin-left: 20%;
+  font-family: "Poppins", sans-serif;
+}
+label {
+  display: block;
+
+  margin-top: 4vh;
+}
+#username,
+#password {
+  display: block;
+  width: 60%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid darkgray;
+  color: #fbfbfb;
+}
+#username,
+#password:focus {
+  outline: none;
+}
+[type="submit"] {
+  margin: 5vh 43%;
+  color: #ffa500;
+  background-color: transparent;
+  border: none;
+}
+[type="submit"]:hover {
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  #login-box {
+    position: absolute;
+    top: 15%;
+    left: 30px;
+
+    background-color: #0e0e0e;
+    width: 80vw;
+    height: 30vh;
+  }
+  h1 {
+    font-size: 15px;
+    margin: 2vh 25%;
+    margin-bottom: 4vh;
+  }
+  input,
+  label {
+    font-size: 10px;
+
+    margin-left: 20%;
+    font-family: "Poppins", sans-serif;
+  }
+  label {
+    margin-top: 4vh;
+  }
+  #username,
+  #password {
+    display: block;
+    width: 65%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid darkgray;
+    color: #fbfbfb;
+  }
+  #username,
+  #password:focus {
+    outline: none;
+  }
+  [type="submit"] {
+    margin-top: 5vh;
+    margin-left: 43%;
+  }
+}
+
+@media (max-width: 768px) {
+  #login-box {
+    position: absolute;
+    top: 25%;
+    left: 12%;
+    background-color: #0e0e0e;
+    width: 80vw;
+    height: 45vh;
+  }
+  h1 {
+    margin: 2vh 30%;
+    margin-bottom: 4vh;
+  }
+  input,
+  label {
+    margin-left: 20%;
+    font-family: "Poppins", sans-serif;
+  }
+  label {
+    display: block;
+
+    margin-top: 4vh;
+  }
+  #username,
+  #password {
+    display: block;
+    width: 65%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid darkgray;
+    color: #fbfbfb;
+  }
+  #username,
+  #password:focus {
+    outline: none;
+  }
+  [type="submit"] {
+    margin: 5vh 43%;
+  }
+}
+
+@media (max-width: 1024px) {
+  #login-box {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+
+    background-color: #0e0e0e;
+    width: 80vw;
+    height: 40vh;
+  }
+  h1 {
+    margin: 2vh 30%;
+    margin-bottom: 4vh;
+  }
+}
