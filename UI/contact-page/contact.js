@@ -24,13 +24,4 @@ form.addEventListener("submit", (evt) => {
   form.name.value = "";
   form.email.value = "";
   form.message.value = "";
-
-  // retrieve data for testing
-  db.collection("contact-form")
-    .get()
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        console.log(doc.data());
-      });
-    });
 });
