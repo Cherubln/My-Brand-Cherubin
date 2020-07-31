@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administrator page</title>
@@ -18,7 +21,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
-    <script src="./blog.js"></script>
+    <script src="./blog.js" defer></script>
   </head>
   <body>
     <header id="doc-head">
@@ -33,7 +36,7 @@
           <a href="../blog-page/blog.html" class="nav-links">CN <i class="fa fa-caret-down"></i></a>
 
           <div class="dropdown-content">
-            <!-- <a href="#">Profile</a> -->
+            <a href="#messages">Messages</a>
             <a href="../blog-page/blog.html">Logout</a>
           </div>
         </div>
@@ -100,6 +103,11 @@
       <div><button class="myBtn">Update</button>
         <button class="myBtn2">Delete</button>
     </article>
-   
+  
+     <article >
+      <h2>Messages</h2>
+      <div id='messages'></div>
+     </article>
+    
   </body>
 </html>
