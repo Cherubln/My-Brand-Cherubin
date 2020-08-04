@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+    <script src="./contact.js" defer></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
@@ -37,7 +41,7 @@
         Get in touch via form below, or by email
         <a href="mailto:cherubinkubwayo@gmail.com">cherubinkubwayo@gmail.com</a>
       </p>
-      <form action="submit">
+      <form id="contact-form">
         <div class="form-text">
           <label for="name">Name:</label>
           <input
@@ -46,7 +50,7 @@
             id="name"
             placeholder="Enter your name"
             class="input-txt"
-            required
+            required="Type your name "
           />
         </div>
         <div class="form-text">
@@ -71,6 +75,7 @@
         </div>
         <input type="submit" value="Send" id="btn" />
       </form>
+      <p id="fdBack"></p>
     </section>
   </body>
 </html>

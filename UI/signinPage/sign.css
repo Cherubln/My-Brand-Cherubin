@@ -15,7 +15,7 @@
   border-radius: 10px;
 }
 h1 {
-  margin: 2vh 25%;
+  text-align: center;
   margin-bottom: 4vh;
 }
 input,
@@ -28,7 +28,7 @@ label {
 
   margin-top: 4vh;
 }
-#username,
+#email,
 #password {
   display: block;
   width: 60%;
@@ -37,7 +37,7 @@ label {
   border-bottom: 2px solid darkgray;
   color: #fbfbfb;
 }
-#username,
+#email,
 #password:focus {
   outline: none;
 }
@@ -62,7 +62,8 @@ label {
   }
   h1 {
     font-size: 15px;
-    margin: 2vh 25%;
+    text-align: center;
+
     margin-bottom: 4vh;
   }
   input,
@@ -75,7 +76,7 @@ label {
   label {
     margin-top: 4vh;
   }
-  #username,
+  #email,
   #password {
     display: block;
     width: 65%;
@@ -84,7 +85,7 @@ label {
     border-bottom: 2px solid darkgray;
     color: #fbfbfb;
   }
-  #username,
+  #email,
   #password:focus {
     outline: none;
   }
@@ -104,7 +105,8 @@ label {
     height: 45vh;
   }
   h1 {
-    margin: 2vh 30%;
+    text-align: center;
+
     margin-bottom: 4vh;
   }
   input,
@@ -117,7 +119,7 @@ label {
 
     margin-top: 4vh;
   }
-  #username,
+  #email,
   #password {
     display: block;
     width: 65%;
@@ -126,7 +128,7 @@ label {
     border-bottom: 2px solid darkgray;
     color: #fbfbfb;
   }
-  #username,
+  #email,
   #password:focus {
     outline: none;
   }
@@ -146,7 +148,8 @@ label {
     height: 40vh;
   }
   h1 {
-    margin: 2vh 30%;
+    text-align: center;
+
     margin-bottom: 4vh;
   }
 }

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <!-- The core Firebase JS SDK is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog of Cherubin Ndikubwayo - Developer - I build and develop websites
@@ -16,7 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
-   <script src="./blog.js" ></script>
+   <script src="./blog.js" defer></script>
   </head>
   <body>
     <header id="doc-head">
@@ -75,13 +79,28 @@
       <i onclick="myFunction(this)" class="fa fa-thumbs-down"></i>
     </div> 
   </article>
-  <form action="/submit">
-    Comments:<br />
-      <textarea name="comments" id="comments">
-      Hey... say something!
-      </textarea><br />
-      <input type="submit" value="Submit"/>
+  <form id="comment-form">
+   
+      
+     <label for="comments">Comments:</label>
+     
+        <input
+          name="name"
+          type="text"
+          id="name"
+          placeholder="Enter your name"
+          required
+        />
+     <textarea
+     name="comments"
+     id="comments"
+     placeholder="Hey... say something!"
+     required
+     ></textarea>
+     <input type="submit" value="Submit"/>
   </form>
-
+<article>
+  <div id="comments-section"></div>
+</article>
   </body>
 </html>
