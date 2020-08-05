@@ -11,34 +11,34 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const blogField = document.querySelector("body");
 
-const form = document.querySelector("#comment-form");
-const comments = document.querySelector("#comments");
-const commentField = document.querySelector("#comments-section");
-const name = document.querySelector("#name");
+function blogs(doc) {
+  const link = document.createElement("a");
+  const title = document.createElement("h1");
+  const body = document.createElement("div");
+  const blogArea = document.createElement("article");
+  const likebtn = document.createElement("i");
+  const dislikebtn = document.createElement("i");
 
-function commentFormData(doc) {
-  const comment = document.createElement("p");
-  const id = document.createElement("p");
-  comment.textContent = doc.data().Comment;
-  id.textContent = ` Comment by ${doc.data().Name}`;
-  commentField.style.backgroundColor = "#0e0e0e";
-  commentField.style.padding = 8 + "px";
-  commentField.appendChild(comment);
-  commentField.appendChild(id);
+  link.textContent = doc.data().Title;
+  body.textContent = doc.data().Body;
+
+  likebtn.setAttribute("class", "fa fa-thumbs-up");
+  dislikebtn.setAttribute("class", "fa fa-thumbs-down");
+  title.appendChild(link);
+  blogArea.appendChild(title);
+  blogArea.appendChild(body);
+  blogArea.appendChild(likebtn);
+  blogArea.appendChild(dislikebtn);
+
+  blogField.appendChild(blogArea);
 }
 
-db.collection("comment-form")
+db.collection("blogs")
   .get()
-  .then((snapshot) => snapshot.docs.forEach((doc) => commentFormData(doc)));
-
-form.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  console.log(form.comments.value);
-  db.collection("comment-form").add({
-    Name: form.name.value,
-    Comment: form.comments.value,
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      blogs(doc);
+    });
   });
-  form.name.value = "";
-  form.comments.value = "";
-});

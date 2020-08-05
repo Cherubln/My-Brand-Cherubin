@@ -67,8 +67,39 @@ article {
 h1 {
   text-transform: uppercase;
 }
-p {
+div {
   color: #a6a6a6;
+}
+#comments {
+  display: block;
+  background-color: #0e0e0e;
+  border: none;
+
+  width: 50vw;
+  height: 20vh;
+  color: #fbfbfb;
+  padding-left: 8px;
+  padding-top: 8px;
+  font-family: "Poppins", sans-serif;
+  resize: none;
+}
+#comments:focus {
+  outline: none;
+}
+#name {
+  display: block;
+  width: 50vw;
+  height: 5vh;
+  background-color: #0e0e0e;
+  border: none;
+
+  color: #fbfbfb;
+  padding-left: 8px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 2vh;
+}
+#name:focus {
+  outline: none;
 }
 .dropdown {
   float: left;
@@ -115,13 +146,20 @@ p {
   h3 {
     font-size: 25px;
   }
-  p {
+  div {
     font-size: 20px;
   }
 
   body {
     margin-top: 10vh;
     width: 65vw;
+  }
+  .input-txt,
+  #message {
+    width: 65vw;
+  }
+  #btn {
+    width: 20vw;
   }
 }
 @media (max-width: 768px) {
@@ -134,7 +172,7 @@ p {
   h3 {
     font-size: 20px;
   }
-  p {
+  div {
     font-size: 15px;
   }
   #Search {
@@ -146,6 +184,13 @@ p {
     margin: auto;
     margin-top: 5vh;
     margin-left: 4vw;
+  }
+  .input-txt,
+  #message {
+    width: 75vw;
+  }
+  #btn {
+    width: 20vw;
   }
 }
 
@@ -159,12 +204,17 @@ p {
   h3 {
     font-size: 12px;
   }
-  p {
+  div {
     font-size: 10px;
   }
   #Search {
     width: initial;
     height: initial;
+  }
+  .input-txt,
+  #message,
+  #btn {
+    width: 70vw;
   }
   article {
     width: 50vw;

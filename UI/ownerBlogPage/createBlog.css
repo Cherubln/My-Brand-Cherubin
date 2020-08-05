@@ -1,0 +1,238 @@
+:root {
+  width: 60%;
+  height: 100%;
+  background-color: hsl(0, 0%, 2%);
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  margin: auto;
+}
+body {
+  margin-top: 20vh;
+  text-align: justify;
+}
+#doc-head {
+  position: fixed;
+  background-color: #0e0e0e;
+  top: 0;
+  width: 100vw;
+  left: 0;
+  z-index: 333;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5vh 7vw;
+  margin-right: 2vw;
+}
+
+nav a {
+  margin-left: 4vw;
+}
+.nav-links {
+  text-decoration: none;
+  color: #fbfbfb;
+}
+.nav-links:hover {
+  color: #ffa500;
+}
+#more {
+  display: none;
+}
+.myBtn {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #ffa500;
+  padding: 5px;
+}
+.myBtn2 {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #ff0000;
+  padding: 5px;
+}
+.myBtn:hover,
+.myBtn2:hover {
+  cursor: pointer;
+  background-color: #ddd;
+}
+#create {
+  text-transform: uppercase;
+}
+article {
+  margin-top: 5vh;
+}
+h1 {
+  text-transform: uppercase;
+}
+p {
+  color: #a6a6a6;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #0e0e0e;
+  min-width: 120px;
+  z-index: 1;
+  right: 0;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: #fbfbfb;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-left: 0;
+}
+.dropdown-content a:hover {
+  color: #ffa500;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#comments {
+  display: block;
+  background-color: #0e0e0e;
+  border: none;
+
+  width: 50vw;
+  height: 50vh;
+  color: #fbfbfb;
+  padding-left: 8px;
+  padding-top: 8px;
+  font-family: "Poppins", sans-serif;
+  resize: none;
+}
+#comments:focus {
+  outline: none;
+}
+#name {
+  display: block;
+  width: 50vw;
+  height: 5vh;
+  background-color: #0e0e0e;
+  border: none;
+
+  color: #fbfbfb;
+  padding-left: 8px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 2vh;
+}
+#name:focus {
+  outline: none;
+}
+form {
+  margin-top: 3vh;
+}
+
+@media (max-width: 1024px) {
+  #navbar {
+    font-size: 20px;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  p {
+    font-size: 20px;
+  }
+
+  body {
+    margin-top: 10vh;
+    width: 65vw;
+  }
+  #myBtn {
+    font-size: 22px;
+  }
+  form {
+    margin-top: 3vh;
+  }
+  #comments {
+    width: 50vw;
+    /* height: 50vh; */
+  }
+  #name {
+    width: 50vw;
+  }
+}
+@media (max-width: 768px) {
+  #navbar {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+  }
+  article {
+    width: 50vw;
+    margin: auto;
+    margin-top: 5vh;
+    margin-left: 4vw;
+  }
+  #myBtn {
+    font-size: 18px;
+  }
+  form,
+  #comments,
+  #name [type="submit"] {
+    font-size: 10px;
+  }
+  form {
+    margin-left: 3vw;
+  }
+}
+@media (max-width: 480px) {
+  #navbar {
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 12px;
+  }
+  p {
+    font-size: 10px;
+  }
+  article {
+    width: 50vw;
+    margin: auto;
+    margin-left: 2vw;
+    margin-top: 3vh;
+  }
+  #myBtn {
+    font-size: 12px;
+  }
+  form,
+  #comments,
+  #name [type="submit"] {
+    font-size: 10px;
+  }
+  #comments {
+    width: 45vw;
+  }
+  #name {
+    width: 45vw;
+  }
+}

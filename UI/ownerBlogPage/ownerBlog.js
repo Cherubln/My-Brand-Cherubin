@@ -12,35 +12,73 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const messages = document.querySelector("#messages");
-const btnLogout = document.querySelector("#logout");
+const blogField = document.querySelector("body");
 
-function contactFormData(doc) {
-  const name = document.createElement("h4");
-  const email = document.createElement("p");
-  const message = document.createElement("p");
+function blogs(doc) {
+  const title = document.createElement("h1");
+  const body = document.createElement("div");
+  const blogArea = document.createElement("article");
+  const updatebtn = document.createElement("button");
+  const deletebtn = document.createElement("button");
+  const inputTitle = document.createElement("input");
+  const inputBody = document.createElement("textarea");
+  const btn = document.createElement("input");
+  const form = document.createElement("form");
 
-  name.textContent = doc.data().Name;
-  email.textContent = doc.data().Email;
-  message.textContent = `${doc.data().Name} said: ${doc.data().Message}`;
-  messages.style.backgroundColor = "#0e0e0e";
+  updatebtn.setAttribute("class", "myBtn");
+  blogArea.setAttribute("data-id", doc.id);
+  deletebtn.setAttribute("class", "myBtn2");
+  inputTitle.setAttribute("id", "name");
+  inputTitle.setAttribute("placeholder", "Edit Title");
+  inputTitle.setAttribute("required", true);
+  inputTitle.setAttribute("type", "text");
+  inputBody.setAttribute("id", "comments");
+  inputBody.setAttribute("placeholder", "Edit Body");
+  inputBody.setAttribute("required", true);
+  btn.setAttribute("type", "submit");
+  btn.setAttribute("value", "Update");
 
-  messages.style.padding = 8 + "px";
+  updatebtn.textContent = "Update";
+  deletebtn.textContent = "Delete";
 
-  messages.appendChild(name);
-  name.appendChild(email);
-  messages.appendChild(message);
+  title.textContent = doc.data().Title;
+  body.textContent = doc.data().Body;
+
+  blogArea.appendChild(title);
+  blogArea.appendChild(body);
+  blogArea.appendChild(updatebtn);
+  blogArea.appendChild(deletebtn);
+
+  blogField.appendChild(blogArea);
+
+  updatebtn.addEventListener("click", (e) => {
+    blogArea.appendChild(inputTitle);
+    blogArea.appendChild(inputBody);
+    blogArea.appendChild(btn);
+  });
+
+  deletebtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    let id = e.target.parentElement.getAttribute("data-id");
+    db.collection("blogs").doc(id).delete();
+  });
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    let id = e.target.parentElement.getAttribute("data-id");
+    db.collection("blogs").doc(id).update({
+      Title: inputTitle.value,
+      Body: inputBody.value,
+    });
+    inputTitle.value = "";
+    inputBody.value = "";
+  });
 }
 
-db.collection("contact-form")
+db.collection("blogs")
   .get()
   .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
-      contactFormData(doc);
+      blogs(doc);
     });
   });
-
-btnLogout.addEventListener("click", () => {
-  firebase.auth().signOut();
-  window.location = "../blog-page/blog.html";
-});

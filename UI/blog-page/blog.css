@@ -8,7 +8,6 @@
 }
 body {
   margin-top: 20vh;
-  text-align: justify;
 }
 #doc-head {
   position: fixed;
@@ -35,9 +34,7 @@ nav a {
 .nav-links:hover {
   color: #ffa500;
 }
-#more {
-  display: none;
-}
+
 #myBtn {
   border: none;
   background: transparent;
@@ -54,10 +51,20 @@ i,
 
 article {
   margin-top: 5vh;
+  width: 30vw;
 }
 h1 {
   text-transform: uppercase;
 }
+h1 a {
+  color: #ffa500;
+  text-decoration: none;
+  cursor: pointer;
+}
+h1 a:hover {
+  text-decoration: underline;
+}
+div,
 p {
   color: #a6a6a6;
 }
@@ -107,6 +114,7 @@ form {
   h3 {
     font-size: 25px;
   }
+  div,
   p {
     font-size: 20px;
   }
@@ -139,6 +147,7 @@ form {
   h3 {
     font-size: 20px;
   }
+  div,
   p {
     font-size: 15px;
   }
@@ -170,6 +179,7 @@ form {
   h3 {
     font-size: 12px;
   }
+  div,
   p {
     font-size: 10px;
   }
