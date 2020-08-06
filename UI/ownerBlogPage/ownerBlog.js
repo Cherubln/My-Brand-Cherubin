@@ -11,7 +11,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
+const auth = firebase.auth();
 const blogField = document.querySelector("body");
 
 function blogs(doc) {
@@ -23,18 +23,18 @@ function blogs(doc) {
   const inputTitle = document.createElement("input");
   const inputBody = document.createElement("textarea");
   const btn = document.createElement("input");
-  const form = document.createElement("form");
+  const logout = document.querySelector("#logout");
 
   updatebtn.setAttribute("class", "myBtn");
   blogArea.setAttribute("data-id", doc.id);
   deletebtn.setAttribute("class", "myBtn2");
   inputTitle.setAttribute("id", "name");
   inputTitle.setAttribute("placeholder", "Edit Title");
-  inputTitle.setAttribute("required", true);
+  inputTitle.setAttribute("required", "true");
   inputTitle.setAttribute("type", "text");
   inputBody.setAttribute("id", "comments");
   inputBody.setAttribute("placeholder", "Edit Body");
-  inputBody.setAttribute("required", true);
+  inputBody.setAttribute("required", "true");
   btn.setAttribute("type", "submit");
   btn.setAttribute("value", "Update");
 
@@ -82,3 +82,7 @@ db.collection("blogs")
       blogs(doc);
     });
   });
+logout.addEventListener("click", (e) => {
+  auth.signOut();
+  window.location = "../blog-page/blog.html";
+});
