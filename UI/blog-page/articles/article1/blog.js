@@ -12,6 +12,43 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+function blogs(doc) {
+  const blogArea = document.querySelector("article");
+  const likebtn = document.querySelector("#up");
+  const dislikebtn = document.querySelector("#down");
+
+  blogArea.setAttribute("data-id", doc.id);
+
+  likebtn.style.color = "white";
+  dislikebtn.style.color = "white";
+
+  likebtn.addEventListener("click", (e) => {
+    if (likebtn.style.color === "white") {
+      likebtn.style.color = "blue";
+      dislikebtn.style.color = "white";
+    } else if (likebtn.style.color === "blue") {
+      likebtn.style.color = "white";
+    }
+  });
+
+  dislikebtn.addEventListener("click", (e) => {
+    if (dislikebtn.style.color === "white") {
+      dislikebtn.style.color = "blue";
+      likebtn.style.color = "white";
+    } else if (dislikebtn.style.color === "blue") {
+      dislikebtn.style.color = "white";
+    }
+  });
+}
+
+db.collection("blogs")
+  .get()
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      blogs(doc);
+    });
+  });
+
 const form = document.querySelector("#comment-form");
 const comments = document.querySelector("#comments");
 const commentField = document.querySelector("#comments-section");

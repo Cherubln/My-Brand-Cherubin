@@ -24,6 +24,7 @@ function blogs(doc) {
   link.textContent = doc.data().Title;
   body.textContent = doc.data().Body;
 
+  blogArea.setAttribute("data-id", doc.id);
   likebtn.setAttribute("class", "fa fa-thumbs-up");
   dislikebtn.setAttribute("class", "fa fa-thumbs-down");
   title.appendChild(link);
@@ -31,8 +32,55 @@ function blogs(doc) {
   blogArea.appendChild(body);
   blogArea.appendChild(likebtn);
   blogArea.appendChild(dislikebtn);
+  likebtn.style.color = "white";
+  dislikebtn.style.color = "white";
 
   blogField.appendChild(blogArea);
+  let likes = 0;
+  let dislikes = 0;
+  likebtn.addEventListener("click", (e) => {
+    if (likebtn.style.color === "white") {
+      likebtn.style.color = "blue";
+      dislikebtn.style.color = "white";
+      likes++;
+    } else if (likebtn.style.color === "blue") {
+      likebtn.style.color = "white";
+      likes--;
+    }
+    let id = e.target.parentElement.getAttribute("data-id");
+    db.collection("blogs").doc(id).update({
+      Likes: likes,
+    });
+    db.collection("blogs")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          console.log(doc.data());
+        });
+      });
+  });
+
+  dislikebtn.addEventListener("click", (e) => {
+    if (dislikebtn.style.color === "white") {
+      dislikebtn.style.color = "blue";
+      likebtn.style.color = "white";
+      dislikes++;
+    } else if (dislikebtn.style.color === "blue") {
+      dislikebtn.style.color = "white";
+      dislikes--;
+    }
+    let id = e.target.parentElement.getAttribute("data-id");
+    db.collection("blogs").doc(id).update({
+      Dislikes: dislikes,
+    });
+    db.collection("blogs")
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((doc) => {
+          console.log(doc.data());
+        });
+      });
+  });
 }
 
 db.collection("blogs")
