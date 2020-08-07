@@ -24,4 +24,6 @@ form.addEventListener("submit", (evt) => {
   });
   form.name.value = "";
   form.comments.value = "";
+  alert("Article succefully created");
+  window.location = "./ownerBlog.html";
 });

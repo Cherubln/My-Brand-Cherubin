@@ -11,8 +11,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
-const blogField = document.querySelector("#blog-area");
+const blogField = document.querySelector("body");
+const blogId = localStorage.getItem("blog-id");
 
 function blogs(doc) {
   const link = document.createElement("a");
@@ -21,14 +21,32 @@ function blogs(doc) {
   const blogArea = document.createElement("article");
   const likebtn = document.createElement("i");
   const dislikebtn = document.createElement("i");
+  const form = document.createElement("form");
+  const name = document.createElement("input");
+  const message = document.createElement("textarea");
+  const btn = document.createElement("input");
+  const label = document.createElement("label");
+  const username = document.createElement("h5");
+  const usermessage = document.createElement("p");
+  const userbox = document.createElement("article");
 
   link.textContent = doc.data().Title;
   body.textContent = doc.data().Body;
-
+  username.textContent = doc.data().Name;
+  usermessage.textContent = doc.data().Message;
+  label.textContent = "Leave a comment below";
   blogArea.setAttribute("data-id", doc.id);
   likebtn.setAttribute("class", "fa fa-thumbs-up");
   dislikebtn.setAttribute("class", "fa fa-thumbs-down");
-  link.setAttribute("href", "./blog1.html");
+  name.setAttribute("required", "");
+  name.setAttribute("id", "name");
+  name.setAttribute("placeholder", "Name");
+  name.setAttribute("type", "text");
+  message.setAttribute("required", "");
+  message.setAttribute("id", "comments");
+  message.setAttribute("placeholder", "Message");
+  btn.setAttribute("type", "submit");
+  btn.setAttribute("value", "Submit");
   title.appendChild(link);
   blogArea.appendChild(title);
   blogArea.appendChild(body);
@@ -36,13 +54,28 @@ function blogs(doc) {
   blogArea.appendChild(dislikebtn);
   likebtn.style.color = "white";
   dislikebtn.style.color = "white";
+
   blogField.appendChild(blogArea);
+  form.appendChild(label);
+  form.appendChild(name);
+  form.appendChild(message);
+  form.appendChild(btn);
 
-  link.addEventListener("click", (e) => {
-    window.location = "../ownerBlogPage/ownerBlog.html";
-    console.log("hey");
+  blogField.appendChild(form);
+  userbox.appendChild(username);
+  userbox.appendChild(usermessage);
+
+  blogField.appendChild(userbox);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Thank you for a comment");
+    db.collection("blogs").doc(blogId).update({
+      Name: name.value,
+      Message: message.value,
+    });
+    name.value = "";
+    message.value = "";
   });
-
   let likes = 0;
   let dislikes = 0;
   likebtn.addEventListener("click", (e) => {
@@ -91,41 +124,8 @@ function blogs(doc) {
 }
 
 db.collection("blogs")
+  .doc(blogId)
   .get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      blogs(doc);
-    });
+  .then((doc) => {
+    blogs(doc);
   });
-
-const form = document.querySelector("#comment-form");
-const comments = document.querySelector("#comments");
-const commentField = document.querySelector("#comments-section");
-const name = document.querySelector("#name");
-
-function commentFormData(doc) {
-  const commentArea = document.createElement("div");
-  const comment = document.createElement("p");
-  const id = document.createElement("h5");
-  comment.textContent = doc.data().Comment;
-  id.textContent = doc.data().Name;
-
-  commentArea.appendChild(id);
-  commentArea.appendChild(comment);
-  commentField.appendChild(commentArea);
-}
-
-db.collection("comment-article1")
-  .get()
-  .then((snapshot) => snapshot.docs.forEach((doc) => commentFormData(doc)));
-
-form.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  console.log(form.comments.value);
-  db.collection("comment-article1").add({
-    Name: form.name.value,
-    Comment: form.comments.value,
-  });
-  form.name.value = "";
-  form.comments.value = "";
-});

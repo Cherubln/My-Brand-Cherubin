@@ -24,17 +24,18 @@ function blogs(doc) {
   const inputBody = document.createElement("textarea");
   const btn = document.createElement("input");
   const logout = document.querySelector("#logout");
+  const form = document.createElement("form");
 
   updatebtn.setAttribute("class", "myBtn");
   blogArea.setAttribute("data-id", doc.id);
   deletebtn.setAttribute("class", "myBtn2");
+  inputTitle.setAttribute("required", "");
   inputTitle.setAttribute("id", "name");
   inputTitle.setAttribute("placeholder", "Edit Title");
-  inputTitle.setAttribute("required", "true");
   inputTitle.setAttribute("type", "text");
+  inputBody.setAttribute("required", "");
   inputBody.setAttribute("id", "comments");
   inputBody.setAttribute("placeholder", "Edit Body");
-  inputBody.setAttribute("required", "true");
   btn.setAttribute("type", "submit");
   btn.setAttribute("value", "Update");
 
@@ -43,6 +44,8 @@ function blogs(doc) {
 
   title.textContent = doc.data().Title;
   body.textContent = doc.data().Body;
+  inputTitle.value = doc.data().Title;
+  inputBody.value = doc.data().Body;
 
   blogArea.appendChild(title);
   blogArea.appendChild(body);
@@ -52,26 +55,32 @@ function blogs(doc) {
   blogField.appendChild(blogArea);
 
   updatebtn.addEventListener("click", (e) => {
-    blogArea.appendChild(inputTitle);
-    blogArea.appendChild(inputBody);
-    blogArea.appendChild(btn);
+    form.appendChild(inputTitle);
+    form.appendChild(inputBody);
+    form.appendChild(btn);
+    blogArea.appendChild(form);
   });
 
   deletebtn.addEventListener("click", (e) => {
     e.stopPropagation();
     let id = e.target.parentElement.getAttribute("data-id");
     db.collection("blogs").doc(id).delete();
+    alert("Blog deleted");
   });
 
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
     let id = e.target.parentElement.getAttribute("data-id");
     db.collection("blogs").doc(id).update({
       Title: inputTitle.value,
       Body: inputBody.value,
     });
-    inputTitle.value = "";
-    inputBody.value = "";
+    form.removeChild(inputTitle);
+    form.removeChild(inputBody);
+    form.removeChild(btn);
+    blogArea.removeChild(form);
+    alert("Blog updated");
   });
 }
 

@@ -22,7 +22,7 @@ function blogs(doc) {
   const dislikebtn = document.createElement("i");
 
   link.textContent = doc.data().Title;
-  body.textContent = doc.data().Body;
+  body.textContent = doc.data().Body.slice(0, 50) + "...";
 
   blogArea.setAttribute("data-id", doc.id);
   likebtn.setAttribute("class", "fa fa-thumbs-up");
@@ -36,6 +36,13 @@ function blogs(doc) {
   dislikebtn.style.color = "white";
 
   blogField.appendChild(blogArea);
+
+  link.addEventListener("click", (e) => {
+    localStorage.setItem("blog-id", doc.id);
+    // e.target.parentElement.setAttribute("data-id", doc.id);
+    window.location = "./articles/article.html";
+  });
+
   let likes = 0;
   let dislikes = 0;
   likebtn.addEventListener("click", (e) => {
