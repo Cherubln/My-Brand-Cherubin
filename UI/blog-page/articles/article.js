@@ -69,7 +69,7 @@ function blogs(doc) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     alert("Thank you for a comment");
-    db.collection("blogs").doc(blogId).update({
+    db.collection(blogId).add({
       Name: name.value,
       Message: message.value,
     });
