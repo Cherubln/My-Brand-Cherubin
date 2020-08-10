@@ -8,7 +8,6 @@
 }
 body {
   margin-top: 20vh;
-  text-align: justify;
 }
 #doc-head {
   position: fixed;
@@ -35,9 +34,7 @@ nav a {
 .nav-links:hover {
   color: #ffa500;
 }
-#more {
-  display: none;
-}
+
 #myBtn {
   border: none;
   background: transparent;
@@ -54,18 +51,31 @@ i,
 
 article {
   margin-top: 5vh;
+  width: 30vw;
 }
 h1 {
   text-transform: uppercase;
 }
+h1 a {
+  color: #ffa500;
+  text-decoration: none;
+  cursor: pointer;
+}
+h1 a:hover {
+  text-decoration: underline;
+}
+div,
 p {
   color: #a6a6a6;
 }
+
 #comments {
+  display: block;
   background-color: #0e0e0e;
   border: none;
+
   width: 40vw;
-  height: 15vh;
+  height: 10vh;
   color: #fbfbfb;
   padding-left: 8px;
   padding-top: 8px;
@@ -73,6 +83,21 @@ p {
   resize: none;
 }
 #comments:focus {
+  outline: none;
+}
+#name {
+  display: block;
+  width: 40vw;
+  height: 5vh;
+  background-color: #0e0e0e;
+  border: none;
+
+  color: #fbfbfb;
+  padding-left: 8px;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 2vh;
+}
+#name:focus {
   outline: none;
 }
 form {
@@ -89,6 +114,7 @@ form {
   h3 {
     font-size: 25px;
   }
+  div,
   p {
     font-size: 20px;
   }
@@ -107,6 +133,9 @@ form {
     width: 50vw;
     height: 10vh;
   }
+  #name {
+    width: 50vw;
+  }
 }
 @media (max-width: 768px) {
   #navbar {
@@ -118,6 +147,7 @@ form {
   h3 {
     font-size: 20px;
   }
+  div,
   p {
     font-size: 15px;
   }
@@ -132,7 +162,7 @@ form {
   }
   form,
   #comments,
-  [type="submit"] {
+  #name [type="submit"] {
     font-size: 10px;
   }
   form {
@@ -149,6 +179,7 @@ form {
   h3 {
     font-size: 12px;
   }
+  div,
   p {
     font-size: 10px;
   }
@@ -163,10 +194,13 @@ form {
   }
   form,
   #comments,
-  [type="submit"] {
+  #name [type="submit"] {
     font-size: 10px;
   }
   #comments {
+    width: 45vw;
+  }
+  #name {
     width: 45vw;
   }
 }

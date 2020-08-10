@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator page</title>
+    <link rel="stylesheet" href="./createBlog.css" />
+    <link
+      rel="shortcut icon"
+      href="../favicon_io/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./createBlog.js" defer></script>
+  </head>
+  <body>
+    <header id="doc-head">
+      <nav id="navbar">
+        <div>
+          <a href="../landing-page/index.html" class="nav-links">Home</a>
+
+          <a href="../blog-page/blog.html" class="nav-links">Blog</a>
+
+          <a href="./createBlog.html" class="nav-links">Create article</a>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="nav-links">CN <i class="fa fa-caret-down"></i></a>
+
+          <div class="dropdown-content">
+            <!-- <a href="#">Profile</a> -->
+            <a href="#" id="logout">Log out</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <form id="comment-form">
+      <label for="comments">Create article</label>
+
+      <input
+        name="name"
+        type="text"
+        id="name"
+        placeholder="Blog title"
+        required
+      />
+      <textarea
+        name="comments"
+        id="comments"
+        placeholder="Blog body"
+        required
+      ></textarea>
+      <input type="submit" value="Create blog" />
+    </form>
+  </body>
+</html>
