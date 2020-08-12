@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./routes");
+const blog = require("./controllers/blog");
+const query = require("./controllers/query");
 const bodyParser = require("body-parser");
 
 mongoose
@@ -12,7 +13,8 @@ mongoose
     const app = express();
     app.use(bodyParser.json());
 
-    app.use("/", routes);
+    app.use("/", blog);
+    app.use("/", query);
     const port = process.env.PORT || 5000;
     app.listen(port, () => {
       console.log(`Server has started at ${port}`);
