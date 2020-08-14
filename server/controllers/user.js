@@ -1,17 +1,22 @@
 const express = require("express");
 const Router = express.Router();
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 Router.post("/login", passport.authenticate("local"), (req, res) => {
-  req.login(req.body, (error) => {
-    if (error) res.send(error);
-    else {
+  jwt.sign(
+    {
+      data: req.body,
+    },
+    "secretKey",
+    (error, token) => {
       res.send({
         message: "Logged in successfully",
         user: req.user,
+        token,
       });
     }
-  });
+  );
 });
 
 Router.get("/logout", (req, res) => {
