@@ -3,13 +3,14 @@ const Blog = require("../models/blog");
 const router = express.Router();
 const verifyToken = require("./verifyToken");
 const jwt = require("jsonwebtoken");
+const blogValidator = require("../validators/blog");
 
 router.get("/blogs", async (req, res) => {
   const blogs = await Blog.find();
   res.send(blogs);
 });
 
-router.post("/blogs", verifyToken, (req, res) => {
+router.post("/blogs", verifyToken, blogValidator, (req, res) => {
   jwt.verify(req.token, "secretKey", (error) => {
     if (error) {
       res.sendStatus(403);
@@ -34,13 +35,13 @@ router.get("/blogs/:id", async (req, res) => {
   }
 });
 
-router.patch("/blogs/:id", verifyToken, (req, res) => {
-  jwt.verify(req.token, "secretKey", (error) => {
+router.patch("/blogs/:id", verifyToken, blogValidator, (req, res) => {
+  jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
       res.sendStatus(403);
     } else {
       try {
-        const blog = Blog.findOne({ _id: req.params.id });
+        const blog = await Blog.findOne({ _id: req.params.id });
 
         if (req.body.title) {
           blog.title = req.body.title;

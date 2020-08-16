@@ -11,8 +11,7 @@ Router.post("/login", passport.authenticate("local"), (req, res) => {
     "secretKey",
     (error, token) => {
       res.send({
-        message: "Logged in successfully",
-        user: req.user,
+        status: 200,
         token,
       });
     }

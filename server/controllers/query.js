@@ -2,10 +2,18 @@ const express = require("express");
 const Query = require("../models/query");
 const router = express.Router();
 const queryValidator = require("../validators/query");
+const jwt = require("jsonwebtoken");
+const verifyToken = require("./verifyToken");
 
-router.get("/queries", async (req, res) => {
-  const queries = await Query.find();
-  res.send(queries);
+router.get("/queries", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretKey", async (error) => {
+    if (error) {
+      res.sendStatus(403);
+    } else {
+      const queries = await Query.find();
+      res.send(queries);
+    }
+  });
 });
 
 router.post("/queries", queryValidator, async (req, res) => {
@@ -18,48 +26,36 @@ router.post("/queries", queryValidator, async (req, res) => {
   res.send(query);
 });
 
-router.get("/queries/:id", async (req, res) => {
-  try {
-    const query = await Query.findOne({ _id: req.params.id });
-    res.send(query);
-  } catch {
-    res.status(404);
-    res.send({ error: "Query doesn't exist!" });
-  }
+router.get("/queries/:id", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretKey", async (error) => {
+    if (error) {
+      res.sendStatus(403);
+    } else {
+      try {
+        const query = await Query.findOne({ _id: req.params.id });
+        res.send(query);
+      } catch {
+        res.status(404);
+        res.send({ error: "Query doesn't exist!" });
+      }
+    }
+  });
 });
 
-router.patch("/queries/:id", async (req, res) => {
-  try {
-    const query = await Query.findOne({ _id: req.params.id });
-
-    if (req.body.name) {
-      query.name = req.body.name;
+router.delete("/queries/:id", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretKey", (error) => {
+    if (error) {
+      res.sendStatus(403);
+    } else {
+      try {
+        Query.deleteOne({ _id: req.params.id });
+        res.status(204).send();
+      } catch {
+        res.status(404);
+        res.send({ error: "Query doesn't exist!" });
+      }
     }
-
-    if (req.body.email) {
-      query.email = req.body.email;
-    }
-
-    if (req.body.message) {
-      query.message = req.body.message;
-    }
-
-    await query.save();
-    res.send(query);
-  } catch {
-    res.status(404);
-    res.send({ error: "Query doesn't exist!" });
-  }
-});
-
-router.delete("/queries/:id", async (req, res) => {
-  try {
-    await Query.deleteOne({ _id: req.params.id });
-    res.status(204).send();
-  } catch {
-    res.status(404);
-    res.send({ error: "Query doesn't exist!" });
-  }
+  });
 });
 
 module.exports = router;
