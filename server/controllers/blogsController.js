@@ -58,13 +58,13 @@ exports.updateBlog = (req, res) => {
 };
 
 exports.deleteBlog = (req, res) => {
-  jwt.verify(req.token, "secretKey", (error) => {
+  jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
       res.sendStatus(403);
     } else {
       try {
-        Blog.deleteOne({ _id: req.params.id });
-        res.status(204).send();
+        await Blog.deleteOne({ _id: req.params.id });
+        res.send({ message: "Blog deleted" });
       } catch {
         res.status(404);
         res.send({ error: "blog doesn't exist!" });

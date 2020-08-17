@@ -2,7 +2,6 @@ const express = require("express");
 const Query = require("../models/query");
 const router = express.Router();
 const queryValidator = require("../middleware/queryValidator");
-const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/verifyToken");
 const queriesController = require("../controllers/queriesController");
 

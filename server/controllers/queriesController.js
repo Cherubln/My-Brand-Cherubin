@@ -39,13 +39,13 @@ exports.createQuery = async (req, res) => {
 };
 
 exports.deleteQuery = (req, res) => {
-  jwt.verify(req.token, "secretKey", (error) => {
+  jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
       res.sendStatus(403);
     } else {
       try {
-        Query.deleteOne({ _id: req.params.id });
-        res.status(204).send();
+        await Query.deleteOne({ _id: req.params.id });
+        res.json({ message: "Query deleted" });
       } catch {
         res.status(404);
         res.send({ error: "Query doesn't exist!" });

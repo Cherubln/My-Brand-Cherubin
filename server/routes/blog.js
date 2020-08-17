@@ -1,8 +1,6 @@
 const express = require("express");
-const Blog = require("../models/blog");
 const router = express.Router();
 const verifyToken = require("../middleware/verifyToken");
-const jwt = require("jsonwebtoken");
 const blogValidator = require("../middleware/blogValidator");
 const blogsController = require("../controllers/blogsController");
 
