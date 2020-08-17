@@ -1,16 +1,22 @@
-const express = require("express");
 const Blog = require("../models/blog");
-const router = express.Router();
-const verifyToken = require("./verifyToken");
 const jwt = require("jsonwebtoken");
-const blogValidator = require("../validators/blog");
 
-router.get("/blogs", async (req, res) => {
+exports.getAllBlogs = async (req, res) => {
   const blogs = await Blog.find();
   res.send(blogs);
-});
+};
 
-router.post("/blogs", verifyToken, blogValidator, (req, res) => {
+exports.getSingleBlog = async (req, res) => {
+  try {
+    const blog = await Blog.findOne({ _id: req.params.id });
+    res.send(blog);
+  } catch {
+    res.status(404);
+    res.send({ error: "Blog doesn't exist!" });
+  }
+};
+
+exports.createBlog = (req, res) => {
   jwt.verify(req.token, "secretKey", (error) => {
     if (error) {
       res.sendStatus(403);
@@ -23,19 +29,9 @@ router.post("/blogs", verifyToken, blogValidator, (req, res) => {
       res.send(blog);
     }
   });
-});
+};
 
-router.get("/blogs/:id", async (req, res) => {
-  try {
-    const blog = await Blog.findOne({ _id: req.params.id });
-    res.send(blog);
-  } catch {
-    res.status(404);
-    res.send({ error: "Blog doesn't exist!" });
-  }
-});
-
-router.patch("/blogs/:id", verifyToken, blogValidator, (req, res) => {
+exports.updateBlog = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
       res.sendStatus(403);
@@ -59,9 +55,9 @@ router.patch("/blogs/:id", verifyToken, blogValidator, (req, res) => {
       }
     }
   });
-});
+};
 
-router.delete("/blogs/:id", verifyToken, (req, res) => {
+exports.deleteBlog = (req, res) => {
   jwt.verify(req.token, "secretKey", (error) => {
     if (error) {
       res.sendStatus(403);
@@ -75,6 +71,4 @@ router.delete("/blogs/:id", verifyToken, (req, res) => {
       }
     }
   });
-});
-
-module.exports = router;
+};

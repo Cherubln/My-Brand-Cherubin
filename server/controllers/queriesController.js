@@ -1,11 +1,7 @@
-const express = require("express");
 const Query = require("../models/query");
-const router = express.Router();
-const queryValidator = require("../validators/query");
 const jwt = require("jsonwebtoken");
-const verifyToken = require("./verifyToken");
 
-router.get("/queries", verifyToken, (req, res) => {
+exports.getAllQueries = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
       res.sendStatus(403);
@@ -14,19 +10,9 @@ router.get("/queries", verifyToken, (req, res) => {
       res.send(queries);
     }
   });
-});
+};
 
-router.post("/queries", queryValidator, async (req, res) => {
-  const query = new Query({
-    name: req.body.name,
-    email: req.body.email,
-    message: req.body.message,
-  });
-  await query.save();
-  res.send(query);
-});
-
-router.get("/queries/:id", verifyToken, (req, res) => {
+exports.getSingleQuery = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
       res.sendStatus(403);
@@ -40,9 +26,19 @@ router.get("/queries/:id", verifyToken, (req, res) => {
       }
     }
   });
-});
+};
 
-router.delete("/queries/:id", verifyToken, (req, res) => {
+exports.createQuery = async (req, res) => {
+  const query = new Query({
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message,
+  });
+  await query.save();
+  res.send(query);
+};
+
+exports.deleteQuery = (req, res) => {
   jwt.verify(req.token, "secretKey", (error) => {
     if (error) {
       res.sendStatus(403);
@@ -56,6 +52,4 @@ router.delete("/queries/:id", verifyToken, (req, res) => {
       }
     }
   });
-});
-
-module.exports = router;
+};

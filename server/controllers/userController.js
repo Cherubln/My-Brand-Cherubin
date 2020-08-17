@@ -1,9 +1,6 @@
-const express = require("express");
-const Router = express.Router();
-const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
-Router.post("/login", passport.authenticate("local"), (req, res) => {
+exports.logIn = (req, res) => {
   jwt.sign(
     {
       data: req.body,
@@ -16,11 +13,9 @@ Router.post("/login", passport.authenticate("local"), (req, res) => {
       });
     }
   );
-});
+};
 
-Router.get("/logout", (req, res) => {
+exports.logOut = (req, res) => {
   req.logout();
   res.send("logged out successfully");
-});
-
-module.exports = Router;
+};
