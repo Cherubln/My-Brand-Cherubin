@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 exports.getAllQueries = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
-      res.sendStatus(403);
+      res.status(401).send({ status: 401, message: "Unauthorized" });
     } else {
       const queries = await Query.find();
       res.send(queries);
@@ -15,7 +15,7 @@ exports.getAllQueries = (req, res) => {
 exports.getSingleQuery = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
-      res.sendStatus(403);
+      res.status(401).send({ status: 401, message: "Unauthorized" });
     } else {
       try {
         const query = await Query.findOne({ _id: req.params.id });
@@ -41,7 +41,7 @@ exports.createQuery = async (req, res) => {
 exports.deleteQuery = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
-      res.sendStatus(403);
+      res.status(401).send({ status: 401, message: "Unauthorized" });
     } else {
       try {
         await Query.deleteOne({ _id: req.params.id });

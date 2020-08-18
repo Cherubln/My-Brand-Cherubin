@@ -19,7 +19,7 @@ exports.getSingleBlog = async (req, res) => {
 exports.createBlog = (req, res) => {
   jwt.verify(req.token, "secretKey", (error) => {
     if (error) {
-      res.sendStatus(403);
+      res.status(401).send({ status: 401, message: "Unauthorized" });
     } else {
       const blog = new Blog({
         title: req.body.title,
@@ -34,7 +34,7 @@ exports.createBlog = (req, res) => {
 exports.updateBlog = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
-      res.sendStatus(403);
+      res.status(401).send({ status: 401, message: "Unauthorized" });
     } else {
       try {
         const blog = await Blog.findOne({ _id: req.params.id });
@@ -60,7 +60,7 @@ exports.updateBlog = (req, res) => {
 exports.deleteBlog = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {
     if (error) {
-      res.sendStatus(403);
+      res.status(401).send({ status: 401, message: "Unauthorized" });
     } else {
       try {
         await Blog.deleteOne({ _id: req.params.id });
