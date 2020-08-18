@@ -6,7 +6,7 @@ const verifyToken = (req, res, next) => {
     req.token = bearerToken;
     next();
   } else {
-    res.sendStatus(403);
+    res.status(401).send({ status: 401, message: "Unauthorized" });
   }
 };
 
