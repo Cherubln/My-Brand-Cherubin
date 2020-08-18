@@ -9,10 +9,10 @@ exports.getAllBlogs = async (req, res) => {
 exports.getSingleBlog = async (req, res) => {
   try {
     const blog = await Blog.findOne({ _id: req.params.id });
-    res.send(blog);
+    res.send(blog || status(404));
   } catch {
     res.status(404);
-    res.send({ error: "Blog doesn't exist!" });
+    res.send({ status: 404, error: "Blog doesn't exist!" });
   }
 };
 
@@ -51,7 +51,7 @@ exports.updateBlog = (req, res) => {
         res.send(blog);
       } catch {
         res.status(404);
-        res.send({ error: "blog doesn't exist!" });
+        res.send({ status: 404, error: "blog doesn't exist!" });
       }
     }
   });
@@ -67,7 +67,7 @@ exports.deleteBlog = (req, res) => {
         res.send({ message: "Blog deleted" });
       } catch {
         res.status(404);
-        res.send({ error: "blog doesn't exist!" });
+        res.send({ status: 404, error: "blog doesn't exist!" });
       }
     }
   });

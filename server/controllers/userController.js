@@ -17,5 +17,5 @@ exports.logIn = (req, res) => {
 
 exports.logOut = (req, res) => {
   req.logout();
-  res.send("logged out successfully");
+  res.send({ status: 200, message: "logged out successfully" });
 };

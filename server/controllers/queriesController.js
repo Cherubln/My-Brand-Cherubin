@@ -19,10 +19,10 @@ exports.getSingleQuery = (req, res) => {
     } else {
       try {
         const query = await Query.findOne({ _id: req.params.id });
-        res.send(query);
+        res.send(query || status(404));
       } catch {
         res.status(404);
-        res.send({ error: "Query doesn't exist!" });
+        res.send({ status: 404, error: "Query doesn't exist!" });
       }
     }
   });
@@ -45,10 +45,10 @@ exports.deleteQuery = (req, res) => {
     } else {
       try {
         await Query.deleteOne({ _id: req.params.id });
-        res.json({ message: "Query deleted" });
+        res.json({ status: 200, message: "Query deleted" });
       } catch {
         res.status(404);
-        res.send({ error: "Query doesn't exist!" });
+        res.send({ status: 404, error: "Query doesn't exist!" });
       }
     }
   });
