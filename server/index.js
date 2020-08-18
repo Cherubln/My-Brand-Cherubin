@@ -1,8 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const blog = require("./controllers/blog");
-const query = require("./controllers/query");
-const user = require("./controllers/user");
+const blog = require("./routes/blog");
+const query = require("./routes/query");
+const user = require("./routes/user");
+const comment = require("./routes/comment");
+const likeBlog = require("./routes/likes");
 const bodyParser = require("body-parser");
 const passport = require("./config/passport");
 const session = require("express-session");
@@ -24,6 +26,8 @@ mongoose
     app.use("/", blog);
     app.use("/", query);
     app.use("/", user);
+    app.use("/", comment);
+    app.use("/", likeBlog);
     const port = process.env.PORT || 5000;
     app.listen(port, () => {
       console.log(`Server has started at ${port}`);
