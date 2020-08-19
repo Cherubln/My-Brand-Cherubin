@@ -8,7 +8,7 @@ const likeBlog = require("./routes/likes");
 const bodyParser = require("body-parser");
 const passport = require("./config/passport");
 const session = require("express-session");
-
+const app = express();
 mongoose
   .connect("mongodb://localhost:27017/myBrand", {
     useNewUrlParser: true,
@@ -16,7 +16,7 @@ mongoose
   })
   .then(() => {
     require("./seeds/admin");
-    const app = express();
+
     app.use(bodyParser.json());
     app.use(
       session({ secret: "secret", resave: true, saveUninitialized: true })
@@ -28,11 +28,12 @@ mongoose
     app.use("/", user);
     app.use("/", comment);
     app.use("/", likeBlog);
-    const port = process.env.PORT || 5000;
-    app.listen(port, () => {
-      console.log(`Server has started at ${port}`);
-    });
   })
   .catch((error) => {
     console.log(error);
   });
+const port = process.env.PORT || 5000;
+const server = app.listen(port, () => {
+  console.log(`Server has started at ${port}`);
+});
+module.exports = server;
