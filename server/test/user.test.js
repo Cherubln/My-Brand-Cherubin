@@ -43,7 +43,7 @@ describe("User API", function () {
   // test logout
 
   describe("GET /logout", function () {
-    it("Should logout", function (done) {
+    it("Should logout on valid resource", function (done) {
       chai
         .request(server)
         .get("/logout")
@@ -55,7 +55,7 @@ describe("User API", function () {
           done();
         });
     });
-    it("Should not logout", function (done) {
+    it("Should not logout on invalid resource", function (done) {
       chai
         .request(server)
         .get("/Log")
