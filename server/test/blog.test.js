@@ -25,7 +25,7 @@ describe("Blog API", function () {
   //  test GET all blogs
 
   describe("GET /blogs", function () {
-    it("Should get all the blogs", function (done) {
+    it("Should get all the blogs with status code 200", function (done) {
       chai
         .request(server)
         .get("/blogs")
@@ -35,7 +35,7 @@ describe("Blog API", function () {
           done();
         });
     });
-    it("Should not get all the blogs", function (done) {
+    it("Should not get all the blogs on invalid resource ", function (done) {
       chai
         .request(server)
         .get("/blog")
@@ -50,7 +50,7 @@ describe("Blog API", function () {
   //  test GET single blog
 
   describe("GET /blogs/:id", function () {
-    it("Should get a blog", function (done) {
+    it("Should get a blog when passed a valid id", function (done) {
       const id = "5f3997e795c9cf1350745805";
       chai
         .request(server)
@@ -63,7 +63,7 @@ describe("Blog API", function () {
           done();
         });
     });
-    it("Should not get a blog", function (done) {
+    it("Should not get a blog on invalid id", function (done) {
       chai
         .request(server)
         .get("/blogs/:id")
@@ -77,7 +77,7 @@ describe("Blog API", function () {
   //  test POST blogs
 
   describe("POST /blogs", function () {
-    it("Should post a blog", function (done) {
+    it("Should post a blog when authorized", function (done) {
       chai
         .request(server)
         .post("/blogs/")
@@ -98,7 +98,7 @@ describe("Blog API", function () {
           done();
         });
     });
-    it("Should not post a blog", function (done) {
+    it("Should not post a blog when unauthorized", function (done) {
       chai
         .request(server)
         .post("/blogs/")
@@ -118,7 +118,7 @@ describe("Blog API", function () {
   //  test PATCH blog
 
   describe("PATCH /blog/:id", function () {
-    it("Should update a blog", function (done) {
+    it("Should update a blog when authorized", function (done) {
       const id = "5f3997e795c9cf1350745805";
       chai
         .request(server)
@@ -141,7 +141,7 @@ describe("Blog API", function () {
         });
     });
 
-    it("Should not update a blog", function (done) {
+    it("Should not update a blog on invalid id", function (done) {
       chai
         .request(server)
         .patch("/blogs/:id")
@@ -162,7 +162,7 @@ describe("Blog API", function () {
   //  test DELETE blog
 
   describe("DELETE /blog:id", function () {
-    it("Shoould delete a blog", function (done) {
+    it("Shoould delete a blog when authorized", function (done) {
       const id = "5f369b015fc356087c027868";
       chai
         .request(server)
@@ -175,7 +175,7 @@ describe("Blog API", function () {
         });
     });
 
-    it("Shoould not delete a blog", function (done) {
+    it("Shoould not delete a blog on invalid id", function (done) {
       chai
         .request(server)
         .delete("/blogs/:id")

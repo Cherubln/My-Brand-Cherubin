@@ -9,7 +9,7 @@ describe("User API", function () {
   //   //  test login
 
   describe("POST /login", function () {
-    it("Should login", function (done) {
+    it("Should login on valid credentials", function (done) {
       chai
         .request(server)
         .post("/login/")
@@ -25,7 +25,7 @@ describe("User API", function () {
           done();
         });
     });
-    it("Should not login", function (done) {
+    it("Should not login on invalid credentials", function (done) {
       chai
         .request(server)
         .post("/login/")

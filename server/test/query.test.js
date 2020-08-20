@@ -25,7 +25,7 @@ describe("Queries API", function () {
   //  test GET all queries
 
   describe("GET /queries", function () {
-    it("Should get all the queries", function (done) {
+    it("Should get all the queries when authorized", function (done) {
       chai
         .request(server)
         .get("/queries")
@@ -36,7 +36,7 @@ describe("Queries API", function () {
           done();
         });
     });
-    it("Should not get all the queries", function (done) {
+    it("Should not get all the queries when unauthorized", function (done) {
       chai
         .request(server)
         .get("/queries")
@@ -51,7 +51,7 @@ describe("Queries API", function () {
   //   //  test GET single query
 
   describe("GET /queries/:id", function () {
-    it("Should get a query", function (done) {
+    it("Should get a query when authorized", function (done) {
       const id = "5f3357ad97f91a0d68c51462";
       chai
         .request(server)
@@ -66,7 +66,7 @@ describe("Queries API", function () {
           done();
         });
     });
-    it("Should not get a query", function (done) {
+    it("Should not get a query when unauthorized", function (done) {
       chai
         .request(server)
         .get("/queries/:id")
@@ -83,7 +83,7 @@ describe("Queries API", function () {
   //   //  test POST queries
 
   describe("POST /queries", function () {
-    it("Should post a query", function (done) {
+    it("Should post a query on valid id", function (done) {
       chai
         .request(server)
         .post("/queries/")
@@ -101,7 +101,7 @@ describe("Queries API", function () {
           done();
         });
     });
-    it("Should not post a query", function (done) {
+    it("Should not post a query on invalid id", function (done) {
       chai
         .request(server)
         .post("/query/")
@@ -120,7 +120,7 @@ describe("Queries API", function () {
   //   //  test DELETE query
 
   describe("DELETE /query:id", function () {
-    it("Shoould delete a query", function (done) {
+    it("Shoould delete a query when authorized", function (done) {
       const id = "5f33c8d09211f52a18182d3b";
       chai
         .request(server)
@@ -133,7 +133,7 @@ describe("Queries API", function () {
         });
     });
 
-    it("Shoould not delete a query", function (done) {
+    it("Should not delete a query on invalid id", function (done) {
       chai
         .request(server)
         .delete("/queries/:id")

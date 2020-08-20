@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe("Likes API", function () {
   describe("POST /blogs/likes/:id", function () {
-    it("Should add a like", function (done) {
+    it("Should add a like when passed valid id", function (done) {
       const id = "5f3997e795c9cf1350745805";
       chai
         .request(server)
@@ -18,7 +18,7 @@ describe("Likes API", function () {
           done();
         });
     });
-    it("Should not add like", function (done) {
+    it("Should not add like when passed invalid id", function (done) {
       chai
         .request(server)
         .post("/blogs/likes/:id")

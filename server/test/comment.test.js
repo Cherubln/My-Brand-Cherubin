@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe("Comments API", function () {
   describe("POST /blogs/comments/:id", function () {
-    it("Should post a comment", function (done) {
+    it("Should post a comment on valid id", function (done) {
       const id = "5f3997e795c9cf1350745805";
       chai
         .request(server)
@@ -25,7 +25,7 @@ describe("Comments API", function () {
           done();
         });
     });
-    it("Should not post a comment", function (done) {
+    it("Should not post a comment on invalid id", function (done) {
       chai
         .request(server)
         .post("/blogs/comments/:id")
