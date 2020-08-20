@@ -113,6 +113,21 @@ describe("Blog API", function () {
           done();
         });
     });
+
+    it("Should not post a blog when passed invalid properties", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/")
+        .send({
+          title: "",
+          content: " documents.",
+        })
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.body.should.have.property("error");
+          done();
+        });
+    });
   });
 
   //  test PATCH blog

@@ -127,6 +127,22 @@ describe("Queries API", function () {
           done();
         });
     });
+
+    it("Should not post a query on invalid properties", function (done) {
+      chai
+        .request(server)
+        .post("/queries/")
+        .send({
+          name: "c",
+          email: "chris@gmai",
+          message: "Hope you are doing well",
+        })
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.body.should.have.property("error");
+          done();
+        });
+    });
   });
 
   //   //  test DELETE query

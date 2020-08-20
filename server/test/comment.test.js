@@ -39,5 +39,20 @@ describe("Comments API", function () {
           done();
         });
     });
+
+    it("Should not post a comment on invalid properties", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/comments/:id")
+        .send({
+          name: " ",
+          message: "Hope ",
+        })
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.body.should.have.property("error");
+          done();
+        });
+    });
   });
 });
