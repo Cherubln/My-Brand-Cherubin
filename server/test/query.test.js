@@ -66,7 +66,7 @@ describe("Queries API", function () {
           done();
         });
     });
-    it("Should not get a query when unauthorized", function (done) {
+    it("Should not get a query on invalid id", function (done) {
       chai
         .request(server)
         .get("/queries/:id")
@@ -74,6 +74,18 @@ describe("Queries API", function () {
         .end(function (err, res) {
           res.should.have.status(404);
           res.body.should.have.property("error").eq("Query doesn't exist!");
+
+          done();
+        });
+    });
+
+    it("Should not get a query on unauthorized", function (done) {
+      chai
+        .request(server)
+        .get("/queries/:id")
+        .end(function (err, res) {
+          res.should.have.status(401);
+          res.body.should.have.property("message").eq("Unauthorized");
 
           done();
         });
@@ -141,6 +153,17 @@ describe("Queries API", function () {
         .end(function (err, res) {
           res.should.have.status(404);
           res.body.should.have.property("error").eq("Query doesn't exist!");
+          done();
+        });
+    });
+
+    it("Should not delete a query on unauthorized", function (done) {
+      chai
+        .request(server)
+        .delete("/queries/:id")
+        .end(function (err, res) {
+          res.should.have.status(401);
+          res.body.should.have.property("message").eq("Unauthorized");
           done();
         });
     });

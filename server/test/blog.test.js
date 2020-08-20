@@ -157,6 +157,22 @@ describe("Blog API", function () {
           done();
         });
     });
+
+    it("Should not update a blog on unauthorized", function (done) {
+      chai
+        .request(server)
+        .patch("/blogs/:id")
+        .send({
+          title: "blog title number 3",
+          content:
+            "Instead they're special languages that use tags to annotate or markup documents,HTML stands for hypertext markup language. Markup languages are actually very common. They're not the same as programing languages.",
+        })
+        .end(function (err, res) {
+          res.should.have.status(401);
+          res.body.should.have.property("message").eq("Unauthorized");
+          done();
+        });
+    });
   });
 
   //  test DELETE blog
@@ -183,6 +199,17 @@ describe("Blog API", function () {
         .end(function (err, res) {
           res.should.have.status(404);
           res.body.should.have.property("error").eq("blog doesn't exist!");
+          done();
+        });
+    });
+
+    it("Shoould not delete a blog on unthorized", function (done) {
+      chai
+        .request(server)
+        .delete("/blogs/:id")
+        .end(function (err, res) {
+          res.should.have.status(401);
+          res.body.should.have.property("message").eq("Unauthorized");
           done();
         });
     });

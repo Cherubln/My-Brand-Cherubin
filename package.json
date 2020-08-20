@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit ./server/test",
-    "start": "nodemon --exec babel-node server/index",
-    "coverage": "nyc --reporter=text npm run test"
+    "test": "nyc --reporter=html --reporter=text mocha --exit ./server/test",
+    "start": " nodemon --exec babel-node server/index",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",
