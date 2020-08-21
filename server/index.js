@@ -10,7 +10,7 @@ import passport from "./config/passport";
 import session from "express-session";
 const app = express();
 mongoose
-  .connect("mongodb://localhost:27017/myBrand", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/myBrand", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
