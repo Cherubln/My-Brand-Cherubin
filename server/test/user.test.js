@@ -58,7 +58,7 @@ describe("User API", function () {
     it("Should not logout on invalid resource", function (done) {
       chai
         .request(server)
-        .get("/Log")
+        .get("/Logaut")
         .end(function (err, res) {
           res.should.have.status(404);
           done();
