@@ -1,5 +1,5 @@
-const Blog = require("../models/blog");
-const jwt = require("jsonwebtoken");
+import Blog from "../models/blog";
+import jwt from "jsonwebtoken";
 
 exports.getAllBlogs = async (req, res) => {
   const blogs = await Blog.find();

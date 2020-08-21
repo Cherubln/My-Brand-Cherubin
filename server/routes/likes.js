@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
-const likesController = require("../controllers/likesController");
+import likesController from "../controllers/likesController";
 
 router.post("/blogs/likes/:id", likesController.likeBlog);
 
-module.exports = router;
+export default router;

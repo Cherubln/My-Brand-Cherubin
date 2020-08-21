@@ -1,4 +1,4 @@
-const user = require("../models/user");
+import user from "../models/user";
 require("dotenv").config();
 const admin = {
   email: process.env.EMAIL,
@@ -7,4 +7,4 @@ const admin = {
 const account = new user(admin);
 account.save();
 
-module.exports = account;
+export default account;

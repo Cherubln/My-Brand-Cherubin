@@ -1,13 +1,13 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const blog = require("./routes/blog");
-const query = require("./routes/query");
-const user = require("./routes/user");
-const comment = require("./routes/comment");
-const likeBlog = require("./routes/likes");
-const bodyParser = require("body-parser");
-const passport = require("./config/passport");
-const session = require("express-session");
+import express from "express";
+import mongoose from "mongoose";
+import blog from "./routes/blog";
+import query from "./routes/query";
+import user from "./routes/user";
+import comment from "./routes/comment";
+import likeBlog from "./routes/likes";
+import bodyParser from "body-parser";
+import passport from "./config/passport";
+import session from "express-session";
 const app = express();
 mongoose
   .connect("mongodb://localhost:27017/myBrand", {
@@ -36,4 +36,4 @@ const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`Server has started at ${port}`);
 });
-module.exports = server;
+export default server;

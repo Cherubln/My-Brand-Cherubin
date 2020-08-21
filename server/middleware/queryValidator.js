@@ -1,4 +1,4 @@
-const Joi = require("@hapi/joi");
+import Joi from "@hapi/joi";
 //create JOI schema
 const schema = Joi.object({
   name: Joi.string().alphanum().min(3).max(30).required(),
@@ -13,4 +13,4 @@ const validateQuery = async (req, res, next) => {
     res.send({ error: err.details[0].message });
   }
 };
-module.exports = validateQuery;
+export default validateQuery;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const ObjectId = mongoose.Schema.ObjectId;
 
 const user = new mongoose.Schema({
@@ -7,4 +7,4 @@ const user = new mongoose.Schema({
   password: String,
 });
 
-module.exports = mongoose.model("user", user);
+export default mongoose.model("user", user);
