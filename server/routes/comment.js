@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const validateComment = require("../middleware/commentValidator");
-const commentController = require("../controllers/commentController");
+import validateComment from "../middleware/commentValidator";
+import commentController from "../controllers/commentController";
 
 router.post(
   "/blogs/comments/:id",
@@ -9,4 +9,4 @@ router.post(
   commentController.addComment
 );
 
-module.exports = router;
+export default router;

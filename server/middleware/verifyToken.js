@@ -6,9 +6,6 @@ const verifyToken = (req, res, done) => {
     req.token = bearerToken;
   }
   done();
-  // else {
-  //   res.status(401).send({ status: 401, message: "Unauthorized" });
-  // }
 };
 
-module.exports = verifyToken;
+export default verifyToken;

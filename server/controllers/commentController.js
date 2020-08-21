@@ -1,4 +1,4 @@
-const Blog = require("../models/blog");
+import Blog from "../models/blog";
 
 exports.addComment = async (req, res) => {
   try {

@@ -1,5 +1,5 @@
-const Query = require("../models/query");
-const jwt = require("jsonwebtoken");
+import Query from "../models/query";
+import jwt from "jsonwebtoken";
 
 exports.getAllQueries = (req, res) => {
   jwt.verify(req.token, "secretKey", async (error) => {

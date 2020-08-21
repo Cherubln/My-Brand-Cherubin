@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --exit ./server/test",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register server/test --timeout 10000 --exit || true",
     "start": " nodemon --exec babel-node server/index",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -12,7 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/register": "^7.10.5",
     "@hapi/joi": "^17.1.1",
+    "babel-register": "^6.26.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

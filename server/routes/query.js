@@ -1,9 +1,9 @@
-const express = require("express");
-const Query = require("../models/query");
-const router = express.Router();
-const queryValidator = require("../middleware/queryValidator");
-const verifyToken = require("../middleware/verifyToken");
-const queriesController = require("../controllers/queriesController");
+import { Router } from "express";
+import Query from "../models/query";
+const router = Router();
+import queryValidator from "../middleware/queryValidator";
+import verifyToken from "../middleware/verifyToken";
+import queriesController from "../controllers/queriesController";
 
 router.get("/queries", verifyToken, queriesController.getAllQueries);
 
@@ -13,4 +13,4 @@ router.post("/queries", queryValidator, queriesController.createQuery);
 
 router.delete("/queries/:id", verifyToken, queriesController.deleteQuery);
 
-module.exports = router;
+export default router;
