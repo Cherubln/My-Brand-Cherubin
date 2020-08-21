@@ -7,7 +7,7 @@
     "test": "nyc --reporter=html --reporter=text mocha --require @babel/register server/test --exit ",
     "dev": " nodemon --exec babel-node server/index",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "start": "node --exec babel-node server/index"
+    "start": "babel-node server/index"
   },
   "keywords": [],
   "author": "",
