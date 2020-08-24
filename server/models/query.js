@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
   name: String,
@@ -6,4 +6,4 @@ const schema = new mongoose.Schema({
   message: String,
 });
 
-module.exports = mongoose.model("query", schema);
+export default mongoose.model("query", schema);

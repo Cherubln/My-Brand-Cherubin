@@ -1,4 +1,4 @@
-const Joi = require("@hapi/joi");
+import Joi from "@hapi/joi";
 
 const schema = Joi.object({
   name: Joi.string().min(3).required(),
@@ -12,4 +12,4 @@ const validatecomment = async (req, res, next) => {
     res.send({ error: err.details[0].message });
   }
 };
-module.exports = validatecomment;
+export default validatecomment;

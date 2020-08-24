@@ -1,6 +1,6 @@
-const chai = require("chai");
-const chaiHttp = require("chai-http");
-const server = require("../index");
+import chai from "chai";
+import chaiHttp from "chai-http";
+import server from "../index";
 
 chai.should();
 chai.use(chaiHttp);
@@ -58,7 +58,7 @@ describe("User API", function () {
     it("Should not logout on invalid resource", function (done) {
       chai
         .request(server)
-        .get("/Log")
+        .get("/Logaut")
         .end(function (err, res) {
           res.should.have.status(404);
           done();

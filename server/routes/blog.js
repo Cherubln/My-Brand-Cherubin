@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const verifyToken = require("../middleware/verifyToken");
-const blogValidator = require("../middleware/blogValidator");
-const blogsController = require("../controllers/blogsController");
+import verifyToken from "../middleware/verifyToken";
+import blogValidator from "../middleware/blogValidator";
+import blogsController from "../controllers/blogsController";
 
 router.get("/blogs", blogsController.getAllBlogs);
 
@@ -19,4 +19,4 @@ router.patch(
 
 router.delete("/blogs/:id", verifyToken, blogsController.deleteBlog);
 
-module.exports = router;
+export default router;
