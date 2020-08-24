@@ -5,7 +5,7 @@ import query from "./routes/query";
 import user from "./routes/user";
 import comment from "./routes/comment";
 import likeBlog from "./routes/likes";
-import homme from "./routes/home";
+import home from "./routes/home";
 import bodyParser from "body-parser";
 import passport from "./config/passport";
 import session from "express-session";
