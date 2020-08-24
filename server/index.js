@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import passport from "./config/passport";
 import session from "express-session";
 const app = express();
+const router = app.Router();
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/myBrand", {
     useNewUrlParser: true,
@@ -28,6 +29,11 @@ mongoose
     app.use("/", user);
     app.use("/", comment);
     app.use("/", likeBlog);
+    router.get("/", function (req, res) {
+      return res.send({
+        message: "welcome",
+      });
+    });
   })
   .catch((error) => {
     console.log(error);
