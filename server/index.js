@@ -5,12 +5,13 @@ import query from "./routes/query";
 import user from "./routes/user";
 import comment from "./routes/comment";
 import likeBlog from "./routes/likes";
+import home from "./routes/home";
 import bodyParser from "body-parser";
 import passport from "./config/passport";
 import session from "express-session";
 const app = express();
 mongoose
-  .connect("mongodb://localhost:27017/myBrand", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/myBrand", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -23,6 +24,7 @@ mongoose
     );
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use("/", home);
     app.use("/", blog);
     app.use("/", query);
     app.use("/", user);

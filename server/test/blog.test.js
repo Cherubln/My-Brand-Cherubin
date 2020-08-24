@@ -6,6 +6,7 @@ chai.should();
 chai.use(chaiHttp);
 
 let token;
+let blogId;
 
 describe("Blog API", function () {
   before((done) => {
@@ -47,33 +48,6 @@ describe("Blog API", function () {
     });
   });
 
-  //  test GET single blog
-
-  describe("GET /blogs/:id", function () {
-    it("Should get a blog when passed a valid id", function (done) {
-      const id = "5f3997e795c9cf1350745805";
-      chai
-        .request(server)
-        .get("/blogs/" + id)
-        .end(function (err, res) {
-          res.should.have.status(200);
-          res.should.be.a("object");
-          res.body.should.have.property("title");
-          res.body.should.have.property("content");
-          done();
-        });
-    });
-    it("Should not get a blog on invalid id", function (done) {
-      chai
-        .request(server)
-        .get("/blogs/:id")
-        .end(function (err, res) {
-          res.should.have.status(404);
-          done();
-        });
-    });
-  });
-
   //  test POST blogs
 
   describe("POST /blogs", function () {
@@ -88,6 +62,7 @@ describe("Blog API", function () {
             "HTML stands for hypertext markup language. Markup languages are actually very common. They're not the same as programing languages, instead they're special languages that use tags to annotate or markup documents.",
         })
         .end(function (err, res) {
+          blogId = res.body._id;
           res.should.have.status(200);
           res.should.be.a("object");
           res.body.should.have.property("title");
@@ -130,14 +105,114 @@ describe("Blog API", function () {
     });
   });
 
+  //  test GET single blog
+
+  describe("GET /blogs/:id", function () {
+    it("Should get a blog when passed a valid id", function (done) {
+      chai
+        .request(server)
+        .get("/blogs/" + blogId)
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.should.be.a("object");
+          res.body.should.have.property("title");
+          res.body.should.have.property("content");
+          done();
+        });
+    });
+    it("Should not get a blog on invalid id", function (done) {
+      chai
+        .request(server)
+        .get("/blogs/hlakdjfos")
+        .end(function (err, res) {
+          res.should.have.status(404);
+          done();
+        });
+    });
+  });
+
+  // test POST comment
+
+  describe("POST /blogs/comments/:id", function () {
+    it("Should post a comment on valid id", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/comments/" + blogId)
+        .send({
+          name: "christie",
+          message: "Hope you are doing well",
+        })
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.body.should.have.property("message");
+          res.body.should.have.property("message").eq("comment added");
+
+          done();
+        });
+    });
+    it("Should not post a comment on invalid id", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/comments/hlakdjfos")
+        .send({
+          name: "christie",
+          message: "Hope you are doing well",
+        })
+        .end(function (err, res) {
+          res.should.have.status(404);
+          res.body.should.have.property("error").eq("Blog doesn't exist!");
+          done();
+        });
+    });
+
+    it("Should not post a comment on invalid properties", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/comments/" + blogId)
+        .send({
+          name: " ",
+          message: "Hope ",
+        })
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.body.should.have.property("error");
+          done();
+        });
+    });
+  });
+
+  // test POST likes
+
+  describe("POST /blogs/likes/:id", function () {
+    it("Should add a like when passed valid id", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/likes/" + blogId)
+        .end(function (err, res) {
+          res.should.have.status(200);
+          res.body.should.have.property("message").eq("like added");
+          done();
+        });
+    });
+    it("Should not add like when passed invalid id", function (done) {
+      chai
+        .request(server)
+        .post("/blogs/likes/hosidfuis")
+        .end(function (err, res) {
+          res.should.have.status(404);
+          res.body.should.have.property("error").eq("Blog doesn't exist!");
+          done();
+        });
+    });
+  });
+
   //  test PATCH blog
 
   describe("PATCH /blog/:id", function () {
     it("Should update a blog when authorized", function (done) {
-      const id = "5f3997e795c9cf1350745805";
       chai
         .request(server)
-        .patch("/blogs/" + id)
+        .patch("/blogs/" + blogId)
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "blog title number 3",
@@ -159,7 +234,7 @@ describe("Blog API", function () {
     it("Should not update a blog on invalid id", function (done) {
       chai
         .request(server)
-        .patch("/blogs/:id")
+        .patch("/blogs/ksgjk")
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "blog title number 3",
@@ -176,7 +251,7 @@ describe("Blog API", function () {
     it("Should not update a blog on unauthorized", function (done) {
       chai
         .request(server)
-        .patch("/blogs/:id")
+        .patch("/blogs/" + blogId)
         .send({
           title: "blog title number 3",
           content:
@@ -194,10 +269,9 @@ describe("Blog API", function () {
 
   describe("DELETE /blog:id", function () {
     it("Shoould delete a blog when authorized", function (done) {
-      const id = "5f369b015fc356087c027868";
       chai
         .request(server)
-        .delete("/blogs/" + id)
+        .delete("/blogs/" + blogId)
         .set("Authorization", `Bearer ${token}`)
         .end(function (err, res) {
           res.should.have.status(200);
@@ -209,7 +283,7 @@ describe("Blog API", function () {
     it("Shoould not delete a blog on invalid id", function (done) {
       chai
         .request(server)
-        .delete("/blogs/:id")
+        .delete("/blogs/mdig")
         .set("Authorization", `Bearer ${token}`)
         .end(function (err, res) {
           res.should.have.status(404);
@@ -221,7 +295,7 @@ describe("Blog API", function () {
     it("Shoould not delete a blog on unthorized", function (done) {
       chai
         .request(server)
-        .delete("/blogs/:id")
+        .delete("/blogs/" + blogId)
         .end(function (err, res) {
           res.should.have.status(401);
           res.body.should.have.property("message").eq("Unauthorized");
