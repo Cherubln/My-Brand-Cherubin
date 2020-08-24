@@ -29,11 +29,14 @@ mongoose
     app.use("/", user);
     app.use("/", comment);
     app.use("/", likeBlog);
-    router.get("/", function (req, res) {
-      return res.send({
-        message: "welcome",
-      });
-    });
+    app.use(
+      "/",
+      router.get("/", function (req, res) {
+        return res.send({
+          message: "welcome",
+        });
+      })
+    );
   })
   .catch((error) => {
     console.log(error);
