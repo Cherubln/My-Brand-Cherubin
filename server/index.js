@@ -5,11 +5,11 @@ import query from "./routes/query";
 import user from "./routes/user";
 import comment from "./routes/comment";
 import likeBlog from "./routes/likes";
+import homme from "./routes/home";
 import bodyParser from "body-parser";
 import passport from "./config/passport";
 import session from "express-session";
 const app = express();
-const router = app.Router();
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/myBrand", {
     useNewUrlParser: true,
@@ -24,19 +24,12 @@ mongoose
     );
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use("/", home);
     app.use("/", blog);
     app.use("/", query);
     app.use("/", user);
     app.use("/", comment);
     app.use("/", likeBlog);
-    app.use(
-      "/",
-      router.get("/", function (req, res) {
-        return res.send({
-          message: "welcome",
-        });
-      })
-    );
   })
   .catch((error) => {
     console.log(error);
