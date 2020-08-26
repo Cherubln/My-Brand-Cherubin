@@ -157,7 +157,6 @@
       "get": {
         "tags": ["Blogs"],
         "summary": "Get single blog",
-
         "responses": {
           "200": {
             "description": "OK",
@@ -298,13 +297,6 @@
             "required": true,
             "type": "string",
             "description": "Token"
-          },
-          {
-            "name": "token",
-            "in": "path",
-            "description": "token",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
