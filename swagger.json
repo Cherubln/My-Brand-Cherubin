@@ -86,18 +86,16 @@
       }
     },
     "/blogs/comments/{id}": {
-      "parameters": [
-        {
-          "name": "id of a blog",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }
-      ],
       "post": {
         "tags": ["Blogs"],
         "summary": "Post a comment on blog",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "in": "body",
             "name": "body",
@@ -120,17 +118,17 @@
       }
     },
     "/blogs/likes/{id}": {
-      "parameters": [
-        {
-          "name": "id of a blog",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }
-      ],
       "post": {
         "tags": ["Blogs"],
         "summary": "Like a blog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -146,17 +144,17 @@
       }
     },
     "/blogs/{id}": {
-      "parameters": [
-        {
-          "name": "id of a blog",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }
-      ],
       "get": {
         "tags": ["Blogs"],
         "summary": "Get single blog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -180,6 +178,12 @@
             "required": true,
             "type": "string",
             "description": "Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
           {
             "name": "body",
@@ -214,6 +218,12 @@
             "required": true,
             "type": "string",
             "description": "Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -281,7 +291,6 @@
         {
           "name": "id",
           "in": "path",
-          "description": "Id of a blog",
           "required": true,
           "type": "string"
         }
