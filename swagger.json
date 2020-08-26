@@ -12,9 +12,6 @@
     { "name": "Queries", "description": "API for queries" }
   ],
   "schemes": ["http", "https"],
-  "securityDefinitions": {
-    "Bearer": { "type": "apiKey", "name": "Authorization", "in": "header" }
-  },
 
   "consumes": ["application/json"],
   "produces": ["application/json"],
@@ -27,6 +24,7 @@
           {
             "in": "body",
             "name": "body",
+            "required": true,
             "description": "login",
             "schema": {
               "$ref": "#/definitions/login"
@@ -57,11 +55,19 @@
       "post": {
         "tags": ["Admin"],
         "summary": "Post a blog",
-        "security": [{ "Bearer": [] }],
+
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          },
           {
             "in": "body",
             "name": "body",
+            "required": true,
             "description": "blog to create",
             "schema": {
               "$ref": "#/definitions/blog"
@@ -82,9 +88,8 @@
     "/blogs/comments/{id}": {
       "parameters": [
         {
-          "name": "id",
+          "name": "id of a blog",
           "in": "path",
-          "description": "Id of a blog",
           "required": true,
           "type": "string"
         }
@@ -96,6 +101,7 @@
           {
             "in": "body",
             "name": "body",
+            "required": true,
             "schema": { "$ref": "#/definitions/comments" }
           }
         ],
@@ -116,9 +122,8 @@
     "/blogs/likes/{id}": {
       "parameters": [
         {
-          "name": "id",
+          "name": "id of a blog",
           "in": "path",
-          "description": "Id of a blog",
           "required": true,
           "type": "string"
         }
@@ -143,9 +148,8 @@
     "/blogs/{id}": {
       "parameters": [
         {
-          "name": "id",
+          "name": "id of a blog",
           "in": "path",
-          "description": "Id of a blog",
           "required": true,
           "type": "string"
         }
@@ -169,8 +173,15 @@
       "patch": {
         "tags": ["Admin"],
         "summary": "Update a single blog",
-        "security": [{ "Bearer": [] }],
+
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          },
           {
             "name": "body",
             "in": "body",
@@ -197,7 +208,15 @@
       "delete": {
         "tags": ["Admin"],
         "summary": "Delete single blog",
-        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -215,7 +234,15 @@
       "get": {
         "tags": ["Admin"],
         "summary": "Get all queries",
-        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -232,6 +259,7 @@
           {
             "in": "body",
             "name": "body",
+            "required": true,
             "description": "query to create",
             "schema": {
               "$ref": "#/definitions/query"
@@ -262,8 +290,15 @@
       "get": {
         "tags": ["Admin"],
         "summary": "Get query",
-        "security": [{ "Bearer": [] }],
+
         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          },
           {
             "name": "token",
             "in": "path",
@@ -284,7 +319,15 @@
       "delete": {
         "tags": ["Admin"],
         "summary": "Delete all query",
-        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
