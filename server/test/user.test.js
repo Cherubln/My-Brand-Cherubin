@@ -34,7 +34,7 @@ describe("User API", function () {
           password: "password",
         })
         .end(function (err, res) {
-          res.should.have.status(401);
+          res.should.have.status(200);
           done();
         });
     });

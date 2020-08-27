@@ -1,0 +1,419 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Brand App APIS",
+    "description": "Testing CRUD  operations on my brand app APIS"
+  },
+
+  "tags": [
+    { "name": "Admin", "description": "API for admin" },
+    { "name": "Blogs", "description": "API for blogs" },
+    { "name": "Queries", "description": "API for queries" }
+  ],
+  "schemes": ["http", "https"],
+
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Login as admin",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "login",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/blogs": {
+      "get": {
+        "tags": ["Blogs"],
+        "summary": "Get all blogs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blogs"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Post a blog",
+
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "blog to create",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        }
+      }
+    },
+    "/blogs/comments/{id}": {
+      "post": {
+        "tags": ["Blogs"],
+        "summary": "Post a comment on blog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/comments" }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/comments"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/blogs/likes/{id}": {
+      "post": {
+        "tags": ["Blogs"],
+        "summary": "Like a blog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/likes"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/blogs/{id}": {
+      "get": {
+        "tags": ["Blogs"],
+        "summary": "Get single blog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Admin"],
+        "summary": "Update a single blog",
+
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "blog with new values",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Delete single blog",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/blog"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/queries": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Get all queries",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/queries"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Queries"],
+        "summary": "Post a query",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "description": "query to create",
+            "schema": {
+              "$ref": "#/definitions/query"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/query"
+            }
+          }
+        }
+      }
+    },
+    "/queries/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Get query",
+
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/query"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Delete all query",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/query"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      }
+    },
+
+    "blog": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "blogs": {
+      "type": "object",
+      "properties": {
+        "blogs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#definitions/blog"
+          }
+        }
+      }
+    },
+    "comments": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "likes": {
+      "type": "number"
+    },
+    "query": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "queries": {
+      "type": "object",
+      "properties": {
+        "queries": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#definitions/query"
+          }
+        }
+      }
+    },
+    "login": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
