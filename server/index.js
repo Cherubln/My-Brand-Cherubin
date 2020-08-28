@@ -38,10 +38,7 @@ mongoose
       );
       next();
     });
-    app.use((req, res, next) => {
-      res.status(400).json({ Error: "Invalid Request" });
-      next();
-    });
+
     app.use(bodyParser.json());
     app.use(
       session({ secret: "secret", resave: true, saveUninitialized: true })
