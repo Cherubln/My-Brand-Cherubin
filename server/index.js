@@ -1,9 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
-const app = express();
+import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
-
 import blog from "./routes/blog";
 import query from "./routes/query";
 import user from "./routes/user";
@@ -13,7 +12,7 @@ import home from "./routes/home";
 import bodyParser from "body-parser";
 import passport from "./config/passport";
 import session from "express-session";
-
+const app = express();
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/myBrand", {
     useNewUrlParser: true,
@@ -21,7 +20,7 @@ mongoose
   })
   .then(() => {
     require("./seeds/admin");
-
+    app.use(cors());
     app.use(bodyParser.json());
     app.use(
       session({ secret: "secret", resave: true, saveUninitialized: true })
