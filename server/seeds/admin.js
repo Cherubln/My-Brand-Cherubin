@@ -1,8 +1,8 @@
 import user from "../models/user";
 require("dotenv").config();
 const admin = {
-  email: process.env.EMAIL,
-  password: process.env.PASSWORD,
+  email: "admin@user.com",
+  password: "password",
 };
 const account = new user(admin);
 account.save();
