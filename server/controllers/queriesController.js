@@ -35,6 +35,7 @@ exports.createQuery = async (req, res) => {
     message: req.body.message,
   });
   await query.save();
+  res.status(201);
   res.send(query);
 };
 
@@ -45,7 +46,7 @@ exports.deleteQuery = (req, res) => {
     } else {
       try {
         await Query.deleteOne({ _id: req.params.id });
-        res.json({ status: 200, message: "Query deleted" });
+        res.sendStatus(204);
       } catch {
         res.status(404);
         res.send({ status: 404, error: "Query doesn't exist!" });

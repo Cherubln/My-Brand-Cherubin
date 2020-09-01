@@ -6,6 +6,9 @@ exports.logIn = (req, res) => {
       data: req.body,
     },
     "secretKey",
+    {
+      expiresIn: "1h",
+    },
     (error, token) => {
       res.send({
         status: 200,

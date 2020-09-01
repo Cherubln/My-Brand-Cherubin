@@ -26,6 +26,7 @@ exports.createBlog = (req, res) => {
         content: req.body.content,
       });
       blog.save();
+      res.status(201);
       res.send(blog);
     }
   });
@@ -64,7 +65,7 @@ exports.deleteBlog = (req, res) => {
     } else {
       try {
         await Blog.deleteOne({ _id: req.params.id });
-        res.send({ message: "Blog deleted" });
+        res.sendStatus(204);
       } catch {
         res.status(404);
         res.send({ status: 404, error: "blog doesn't exist!" });
