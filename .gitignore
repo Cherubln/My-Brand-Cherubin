@@ -1,7 +1,5 @@
-node_modules
-
+node_modules/
 package-lock.json
-.nyc_output
-coverage
-
-.vscode
+.nyc_output/
+coverage/
+.vscode/
