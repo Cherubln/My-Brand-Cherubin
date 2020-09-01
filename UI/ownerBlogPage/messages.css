@@ -24,7 +24,14 @@ body {
   margin: 1.5vh 7vw;
   margin-right: 2vw;
 }
-
+h4 a {
+  color: #ffa500;
+  text-decoration: none;
+  cursor: pointer;
+}
+h4 a:hover {
+  text-decoration: underline;
+}
 nav a {
   margin-left: 4vw;
 }

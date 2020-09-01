@@ -2,8 +2,10 @@
 <html lang="en">
   <head>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script src="./sign.js" defer></script>
     <link
       rel="shortcut icon"
@@ -23,10 +25,9 @@
         <label for="useremail">Email</label>
         <input
           name="email"
-          type="email"
+          type="text"
           id="email"
           placeholder="Enter your email"
-          required
         />
         <label for="password">Password</label>
         <input
@@ -34,7 +35,6 @@
           name="password"
           id="password"
           placeholder="Enter your password"
-          required
         />
 
         <input type="submit" value="Log in" id="login" />
